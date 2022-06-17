@@ -1,0 +1,83 @@
+
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-md">
+    <a href="#" class="navbar-brand">TimeSheet</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbar">
+    <ul class="navbar-nav">
+    <li class="nav-item"><a (click)="navigatetomonth()" class="nav-link">Home</a></li>
+
+
+
+  </ul>
+    </div>
+   </nav>
+
+
+ <div class="container jumbotron " >
+<div class="py-5"  >
+    <div class="p-3 mb-2 bg-secondary text-white">
+<h3  style="text-align: center;" >{{mon}} 2022 utilisation</h3>
+</div>
+
+    <table class="table table-striped table-dark" >
+        <tbody>
+            <tr class="bg-info">
+                <th> Id</th>
+                <th> Name</th>
+                <th> team</th>
+                <th> Month</th>
+                <th> Year</th>
+                <th> week1</th>
+                <th> week2</th>
+                <th> week3</th>
+                <th> week4</th>
+                <th> week5</th>
+                <th> total</th>
+
+                <th> Action</th>
+            </tr>
+        </tbody>
+            <tr *ngFor="let res1 of timesheet">
+                <td>{{res1.resource.resourceId}}</td>
+                <td>{{res1.resource.resourceName}}</td>
+                <td>{{res1.resource.team}}</td>
+                <td>{{res1.month}}</td>
+                <td>{{res1.year}}</td>
+                <td>{{res1.week1}}</td>
+                <td>{{res1.week2}}</td>
+                <td>{{res1.week3}}</td>
+                <td>{{res1.week4}}</td>
+                <td>{{res1.week5}}</td>
+                <td>{{res1.total}}</td>
+
+                <td><button class="btn btn-success float-center"  (click)="navigatetoupdate(res1.timeSheetId)" >
+                      Edit
+                </button>
+                </td>
+
+
+            </tr>
+
+    </table >
+
+    <div class="row h-100 justify-content-center align-items-center" class="p-1 mb-2 bg-info text-dark"    >
+
+        <h4 style="text-align: center;"> Total Hours {{num}}</h4>
+        **(if total hour not updated please click reload)
+        <button class="btn btn-success float-center" type="button" (click)="getdata()"  >reload</button>
+        <button class="btn btn-success float-right" type="button" (click)="getback()"  >Go Back</button>
+
+
+
+    </div>
+    <button class="btn btn-warning" type="button" (click)="adddata()" style="margin-left: 50%;"  >Add resource </button>
+</div>
+</div>
+
+
+
+<router-outlet></router-outlet>
+

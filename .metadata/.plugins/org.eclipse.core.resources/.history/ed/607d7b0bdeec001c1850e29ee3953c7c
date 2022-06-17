@@ -1,0 +1,103 @@
+package com.Bitwise.TimeSheet.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.Bitwise.TimeSheet.exception.ResourceNotFound;
+import com.Bitwise.TimeSheet.model.Resource;
+import com.Bitwise.TimeSheet.model.TimeSheet;
+
+import com.Bitwise.TimeSheet.service.TimeSheetService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@CrossOrigin("*")
+@RestController
+@Slf4j
+public class TimesheetController {
+	@Autowired
+	TimeSheetService timeSheetService;
+
+	
+	@PostMapping("/post")
+	public ResponseEntity<Resource> postData(@RequestBody Resource rs) throws ResourceNotFound {
+		Resource res=timeSheetService.saveData(rs);
+		if(res!=null)
+		{
+		return new ResponseEntity<Resource>(timeSheetService.saveData(rs), HttpStatus.CREATED);
+		}
+		else
+		{
+			return new ResponseEntity<Resource>(timeSheetService.saveData(rs), HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@GetMapping("/getbymonth/{month}")
+	public ResponseEntity<List<TimeSheet>> getbymonth(@PathVariable String month) throws ResourceNotFound
+	{
+		List<TimeSheet>l=timeSheetService.getbymonth(month);
+		if(!l.isEmpty())
+		{
+		return new ResponseEntity<List<TimeSheet>>(timeSheetService.getbymonth(month),HttpStatus.OK) ;
+	    }
+		else
+		{
+			return new ResponseEntity<List<TimeSheet>>(timeSheetService.getbymonth(month),HttpStatus.NO_CONTENT) ;
+		}
+	}
+
+	@PutMapping("/update/{TimeSheetId}")
+	public ResponseEntity<TimeSheet> updatadata(@PathVariable int TimeSheetId, @RequestBody TimeSheet s)throws ResourceNotFound
+	{ if((timeSheetService.updatedata(TimeSheetId,s)!=null))
+			{
+		return new ResponseEntity<TimeSheet>(timeSheetService.updatedata(TimeSheetId,s),HttpStatus.OK) ;
+	}
+	{
+		return new ResponseEntity<TimeSheet>(timeSheetService.updatedata(TimeSheetId,s),HttpStatus.NO_CONTENT);
+	}
+	}
+	
+	@GetMapping("/getsingledata/{TimeSheetId}") 
+	public ResponseEntity<Optional<TimeSheet>> getsingledata(@PathVariable int TimeSheetId)
+	{
+		if(timeSheetService.getsingledata(TimeSheetId).isPresent())
+		{
+		return   new ResponseEntity<Optional<TimeSheet>>(timeSheetService.getsingledata(TimeSheetId),HttpStatus.OK) ;
+	}
+		else
+		{
+			return new ResponseEntity<Optional<TimeSheet>>(timeSheetService.getsingledata(TimeSheetId),HttpStatus.NO_CONTENT) ;
+		}
+	}
+	
+	@GetMapping("/getsum/{month}")
+	public ResponseEntity<Integer>  getsum(@PathVariable String month)
+	{
+		Integer s=timeSheetService.getsum(month);
+		if(s!=null)
+		{
+		return  new ResponseEntity<Integer>(timeSheetService.getsum(month),HttpStatus.OK);
+	     }
+		else
+		{
+			return  new ResponseEntity<Integer>(timeSheetService.getsum(month),HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	
+
+	
+	
+}

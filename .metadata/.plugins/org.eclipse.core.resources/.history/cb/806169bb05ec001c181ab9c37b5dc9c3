@@ -1,0 +1,50 @@
+package com.example.microservices.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.microservices.model.Employee;
+import com.example.microservices.model.Employer;
+import com.example.microservices.repo.EMployerREPO;
+import com.example.microservices.repo.HomeRepo;
+import com.example.microservices.service.HomeService;
+
+@Service
+public class HomeserviceImpl implements HomeService{
+
+	
+	@Autowired
+	EMployerREPO er;
+	
+	@Autowired
+	HomeRepo hr;
+	@Override
+	public Employer savedata(Employer e) {
+		Employer ep=	er.save(e);
+		for (Employee r : e.getEmp()) {
+			         r.setE(ep);
+		          hr.save(r);
+	        	}
+		
+		
+		return er.save(e);
+	}
+	@Override
+	public List<Employee> findAll(String month) {
+		
+		return hr.findByMonth(month);
+	}
+	@Override
+	public Employee update(int empid, Employee e) {
+		e.setEmpid(empid);
+		
+//		Optional<Employee> emp=hr.findById(empid);
+//		e.setE(emp.get().getE());
+		
+		return hr.save(e);
+	}
+
+}

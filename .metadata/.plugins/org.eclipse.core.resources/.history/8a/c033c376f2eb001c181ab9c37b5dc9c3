@@ -1,0 +1,14 @@
+package com.example.microservices.service;
+
+import java.util.List;
+
+import com.example.microservices.model.Employee;
+import com.example.microservices.model.Employer;
+
+public interface HomeService {
+
+	public Employer savedata(Employer e);
+
+	public List<Employee> findAll(String month);
+		
+}

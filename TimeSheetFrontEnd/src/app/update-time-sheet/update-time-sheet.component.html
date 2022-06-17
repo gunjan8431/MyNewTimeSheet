@@ -1,0 +1,97 @@
+
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-md">
+  <a href="#" class="navbar-brand">TimeSheet</a>
+  <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="navbar">
+  <ul class="navbar-nav">
+  <li class="nav-item"><a (click)="navigatetomonth()" class="nav-link">Home</a></li>
+
+
+
+</ul>
+  </div>
+ </nav>
+
+
+<div class="my-5"></div>
+ <div  class="mx-auto">
+
+  <div class="container-xl"  >
+
+
+<div class="p-4 mb-3 bg-success text-dark" >
+ <h5 style="text-align: center;">Update Form</h5>
+</div>
+
+<div class="mx-2">
+    <div class="row"  >
+    <div class="form-group col-md-4"  >
+         ID   <input type="text" class="form-control"  placeholder="Enter Id" [(ngModel)]="tes.resource.resourceId" disabled>
+      </div>
+      <div class="form-group col-md-4">
+        NAME  <input type="text" class="form-control"  placeholder="Enter name"  [(ngModel)]="tes.resource.resourceName" >
+      </div>
+      <div class="form-group col-md-4">
+      TEAM  <input type="text" class="form-control"  placeholder="Enter team"  [(ngModel)]="tes.resource.team">
+    </div>
+    </div >
+    <div class="row"  >
+
+      <div   >
+        MONTH  <select type="text"class="form-group col-md-10"  [(ngModel)]="tes.month"  >
+          <option selected>Choose...</option>
+          <option>january</option>
+          <option>february</option>
+          <option>march</option>
+          <option>april</option>
+          <option>may</option>
+          <option>june</option>
+          <option>july</option>
+          <option>august</option>
+          <option>september</option>
+          <option>october</option>
+          <option>november</option>
+          <option>december</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        YEAR <input type="number" class="form-control"  placeholder="Enter Hours"   [(ngModel)]="tes.year" disabled>
+     </div>
+    <div class="form-group col-md-3">
+       WEEK 1 <input type="number" class="form-control"  placeholder="Enter Hours"   [(ngModel)]="tes.week1">
+    </div>
+    <div  class="form-group col-md-3">
+      WEEK 2  <input type="number" class="form-control"  placeholder="Enter Hours"   [(ngModel)]="tes.week2">
+  </div>
+</div>
+
+  <div class="row"  >
+  <div class="form-group col-md-3">
+    WEEK 3  <input type="number" class="form-control"  placeholder="Enter Hours"   [(ngModel)]="tes.week3">
+  </div>
+ <div class="form-group col-md-3">
+  WEEK 4  <input type="number" class="form-control"  placeholder="Enter Hours"   [(ngModel)]="tes.week4">
+ </div>
+ <div class="form-group col-md-3">
+  WEEK 5  <input type="number" class="form-control"  placeholder="Enter Hours"   [(ngModel)]="tes.week5">
+ </div>
+</div>
+</div>
+
+
+
+      <div class="form-group">
+          <button class="btn btn-outline-info btn-lg btn-block" type="submit" (click)="submitdata(tes)">Submit</button>
+      </div>
+    </div>
+    </div>
+
+
+
+
+
+
+

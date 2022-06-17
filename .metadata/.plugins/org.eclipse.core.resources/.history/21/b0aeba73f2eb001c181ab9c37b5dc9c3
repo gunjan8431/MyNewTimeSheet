@@ -1,0 +1,33 @@
+package com.example.microservices.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.microservices.model.Employee;
+import com.example.microservices.model.Employer;
+import com.example.microservices.service.HomeService;
+
+@RestController
+public class HomeController 
+{
+	
+	@Autowired
+	HomeService hs;
+	@PostMapping("/post")
+	public Employer postdata(@RequestBody Employer e)
+	{
+		return hs.savedata(e);
+	}
+	
+	@GetMapping("/get/{month}")
+public List<Employee> getemp(@PathVariable  String month)
+{
+		return hs.findAll(month);
+}
+}

@@ -1,0 +1,60 @@
+
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+        <div style="text-align: center;">
+            <h3  class="navbar-brand" >Time Sheet</h3>
+        </div>
+       </nav>
+ <div class="my-5">
+ <div class="container" style="margin-left: 100px;">
+ <div class="btn-group">
+  <button type="button" class="button button1" (click)="navigatetoupdate('january')">January</button>
+
+  <button type="button" class="button button1"(click)="navigatetoupdate('february')">February</button>
+
+
+  <button type="button" class="button button1" (click)="navigatetoupdate('march')">March</button>
+
+
+
+  <button type="button" class="button button1" (click)="navigatetoupdate('april')">April</button>
+
+
+
+  <button type="button" class="button button1" (click)="navigatetoupdate('may')">May</button>
+
+
+  <button type="button" class="button button1" (click)="navigatetoupdate('june')">June</button>
+
+
+
+<button type="button" class="button button1"  (click)="navigatetoupdate('july')">July</button>
+
+
+
+<button type="button" class="button button1" (click)="navigatetoupdate('august')">August</button>
+
+
+
+<button type="button" class="button button1" (click)="navigatetoupdate('september')">September</button>
+
+
+<button type="button" class="button button1" (click)="navigatetoupdate('october')">October</button>
+ <button type="button" class="button button1" (click)="navigatetoupdate('november')">November</button>
+ <button type="button" class="button button1" (click)="navigatetoupdate('december')">December</button>
+
+
+</div>
+</div>
+</div>
+<div style="margin-left: 40%;">
+  <button type="button" class="btn btn-info btn-lg" (click)="navigatetonewdata()">Add Resource</button>
+</div>
+ <div class="container" style="margin-left: 25%;">
+  <img src="assets\OIP.jpg" alt="Snow"  >
+ </div>
+
+
+
+ <router-outlet></router-outlet>
+

@@ -1,0 +1,25 @@
+
+public class Acolite {
+	
+	
+	static int count =1;
+	public static  void m1()
+	{
+		int x =count+2;
+		if(count>0)
+		{
+			System.out.println(x);
+		}
+			x--
+		
+	}
+public static void main(String[] args) {
+	
+	
+	
+		}
+		
+	      
+	
+}
+}

@@ -1,0 +1,15 @@
+
+public class Acolite {
+public static void main(String[] args) {
+	int a[]= {5,3,6,7,4,3};
+	for(int i=0;i<a.length;i++)
+	{
+		
+			a[0]=a[2];
+			
+		
+		System.out.println(a[i]);
+	}
+	
+}
+}

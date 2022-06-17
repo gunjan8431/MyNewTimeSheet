@@ -1,0 +1,32 @@
+package com.example.microservices.model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Employee {
+	@Id
+	private int empid;
+    private String ename;
+    private String month;
+    private String city;
+    
+    @ManyToOne(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("emp")
+    //@JoinColumn(name="e_emplname")
+    private Employer e;
+}

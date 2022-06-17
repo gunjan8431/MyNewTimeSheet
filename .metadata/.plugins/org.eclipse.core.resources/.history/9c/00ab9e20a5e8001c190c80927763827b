@@ -1,0 +1,34 @@
+
+public class Acolite {
+	
+	
+	static int count =0;
+	public static  void m1()
+	{
+		int n=3;
+		if(n>1&&n<4)
+		{
+			System.out.println(n);
+			n--;
+			
+		}
+		
+		
+		count++;
+		if(count<=3)
+		{
+			System.out.println(count);
+			m1();	
+		}
+				
+	}
+public static void main(String[] args) {
+	
+	m1();
+	
+		}
+		
+	      
+	
+}
+

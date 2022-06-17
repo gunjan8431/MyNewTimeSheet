@@ -1,0 +1,69 @@
+package com.Bitwise.TimeSheet.serviceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.Bitwise.TimeSheet.exception.ResourceNotFound;
+import com.Bitwise.TimeSheet.model.Resource;
+import com.Bitwise.TimeSheet.model.TimeSheet;
+
+
+import com.Bitwise.TimeSheet.repository.ResourceRepository;
+import com.Bitwise.TimeSheet.repository.TimeSheetRepository;
+
+import com.Bitwise.TimeSheet.service.TimeSheetService;
+
+
+
+@Service
+public class TimeSheetServiceImpl implements TimeSheetService {
+
+	@Autowired 
+	ResourceRepository tr;
+
+
+
+	@Autowired
+	TimeSheetRepository hr;
+  
+	@Transactional
+	@Override
+	public Resource saveData(Resource rs) 
+	{
+		// Resource ep=tr.save(rs);
+		for (TimeSheet r : rs.getTimesheet())
+		{
+			int sum=r.getWeek1()+r.getWeek2()+r.getWeek3()+r.getWeek4()+r.getWeek5();
+			r.setTotal(sum);
+			      r.setResource(rs);
+		          hr.save(r);
+	        	}
+		
+		
+		return tr.save(rs);
+
+	}
+
+	@Override
+	public List<TimeSheet> getbymonth(String month) {
+		
+		return hr.findByMonth(month);
+	}
+
+	@Override
+	public TimeSheet updatedata(int timeSheetId, TimeSheet s) {
+		s.setTimeSheetId(timeSheetId);
+		
+		return hr.save(s);
+	}
+     
+
+}

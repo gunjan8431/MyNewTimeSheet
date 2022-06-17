@@ -1,0 +1,52 @@
+package com.Bitwise.TimeSheet.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.Bitwise.TimeSheet.exception.ResourceNotFound;
+import com.Bitwise.TimeSheet.model.Resource;
+import com.Bitwise.TimeSheet.model.TimeSheet;
+
+import com.Bitwise.TimeSheet.service.TimeSheetService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@CrossOrigin("*")
+@RestController
+@Slf4j
+public class TimesheetController {
+	@Autowired
+	TimeSheetService timeSheetService;
+
+	
+	@PostMapping("/post")
+	public ResponseEntity<Resource> postData(@RequestBody Resource rs) {
+		return new ResponseEntity<Resource>(timeSheetService.saveData(rs), HttpStatus.CREATED);
+
+	}
+	
+	@GetMapping("/getbymonth/{month}")
+	public List<TimeSheet> getbymonth(@PathVariable String month)
+	{
+		return timeSheetService.getbymonth(month);
+	}
+
+	@PutMapping("/update/{TimeSheetId}")
+	public TimeSheet updatadata(@PathVariable int TimeSheetId, @RequestBody TimeSheet s)
+	{
+		return timeSheetService.updatedata(TimeSheetId,s);
+	}
+	
+	
+}

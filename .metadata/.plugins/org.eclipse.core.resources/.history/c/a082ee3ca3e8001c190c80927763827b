@@ -1,0 +1,15 @@
+
+public class Acolite {
+public static void main(String[] args) {
+	int a[]= {3,4,10,12,20};
+	
+			int sum=42;
+			for(int i=2;i<a.length;i++)
+			{
+
+		System.out.println(a[i]);
+		
+	      }
+	
+}
+}
